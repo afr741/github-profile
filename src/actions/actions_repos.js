@@ -2,8 +2,8 @@ export const REPOS_FETCHED = 'REPOS_FETCHED';
 
 export function fetchRepos() {
   return (dispatch) => {
-    let header = new Headers({"Content-Type":"application/json", "Authorization":"token 509cd3412dcdfd268730af7be3b328cde3c4b406"});
-    return fetch('https://api.github.com/user/repos', {
+    let header = new Headers({"Content-Type":"application/json", "Authorization":"token 8e47fca3776965122381ee6058c83d398aad8e14"});
+    return fetch('https://api.github.com/user/afr741', {
       method: 'GET',
       headers: header
     })

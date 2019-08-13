@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import { fetchProfile, saveProfile } from '../actions/actions_profile';
+import {fetchProfile, saveProfile} from '../Components/Profile';
 import { fetchRepos } from '../actions/actions_repos';
 
-import ProfileComponent from '../components/Profile';
+import ProfileComponent from '../Components/Profile';
 
 const mapStateToProps = state => {
   return {

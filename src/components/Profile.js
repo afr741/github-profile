@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
-import { Button, FormGroup, ControlLabel, FormControl }  from 'react-bootstrap';
-
+import { FormGroup, FormLabel, FormControl, Form, Button }  from 'react-bootstrap';
+import actions_repos from '../actions/actions_repos';
 class Profile extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      userInfo : this.props.profile,
+      userInfo : {},
       editing : false,
       error : false
+
     }
   }
 
   componentDidMount() {
-    this.props.fetchRepos();
+    //this.props.fetchRepos();
+    let header = new Headers({"Content-Type":"application/json", "Authorization":"token 8e47fca3776965122381ee6058c83d398aad8e14"});
+    return fetch('https://api.github.com/users  /afr741', {
+      method: 'GET',
+      headers: header
+    })
+    .then(response => response.json())
+    .then(json => {
+      //dispatch(loadRepos(json))
+      console.log(json)
+    })
+    .catch(error => console.log(error))
   }
 
   componentWillReceiveProps(nextProps) {
@@ -44,62 +56,23 @@ class Profile extends Component {
 
     return (
       <div className="container">
-        <Button bsStyle="primary" onClick={() => this.setState({editing: !this.state.editing})}>
-          {this.state.editing ? 'Cancel Edit' : 'Edit'}
-        </Button>
-        <hr />
+      <Button bsStyle = "primary" onClick={()=> this.setState({editing: !this.state.editing})}>Edit</Button>
 
-        {this.state.editing ?
-          <FormGroup>
-            <ControlLabel>Name</ControlLabel>
-            <FormControl
-              type="text"
-              className={this.state.error&&this.state.userInfo.name==='' ? 'red-border' : ''}
-              value={this.state.userInfo.name}
-              placeholder="Enter text"
-              onChange={this.updateValue.bind(this,'name')}
-            />
-            <ControlLabel>Bio</ControlLabel>
-            <FormControl
-              type="text"
-              className={this.state.error&&this.state.userInfo.bio==='' ? 'red-border' : ''}
-              value={this.state.userInfo.bio}
-              placeholder="Enter text"
-              onChange={this.updateValue.bind(this,'bio')}
-            />
-            <ControlLabel>Location</ControlLabel>
-            <FormControl
-              type="text"
-              className={this.state.error&&this.state.userInfo.location==='' ? 'red-border' : ''}
-              value={this.state.userInfo.location}
-              placeholder="Enter text"
-              onChange={this.updateValue.bind(this,'location')}
-            />
-            <ControlLabel>Company</ControlLabel>
-            <FormControl
-              type="text"
-              className={this.state.error&&this.state.userInfo.company==='' ? 'red-border' : ''}
-              value={this.state.userInfo.company}
-              placeholder="Enter text"
-              onChange={this.updateValue.bind(this,'company')}
-            />
-            <Button bsStyle="info" onClick={this.saveProfile.bind(this)}>Save</Button>
-          </FormGroup>
+      {this.state.editing ?
+
+      <Form.Group controlId="exampleForm.ControlInput1">
+        <Form.Label>Name </Form.Label>
+        <Form.Control type="text" placeholder="Anushervon Rakhmatov" value = {this.state.userInfo.name} onChange ={this.updateValue.bind(this)}/>
+      </Form.Group>
+
+
         :
+
           <div>
-            <p><strong>Name:</strong> {this.state.userInfo.name}</p>
-            <p><strong>Bio:</strong> {this.state.userInfo.bio}</p>
-            <p><strong>Location:</strong> {this.state.userInfo.location}</p>
-            <p><strong>Company:</strong> {this.state.userInfo.company}</p>
+            <p><strong>Name</strong> {this.state.userInfo.name}</p>
           </div>
-        }
-        <ul>
-        {this.props.repos.map(repo => {
-          return (
-            <li key={'repo-'+repo.id}>{repo.name}</li>
-          )
-        })}
-        </ul>
+      }
+
 
       </div>
     );

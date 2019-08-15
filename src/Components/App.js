@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import {Nav, Navbar,NavItem, NavDropdown, MenuItem, Table} from 'react-bootstrap'
 import Select from 'react-select';
 import Profile from '../containers/Profile';
-import SliderComponent from '../Components/Slider';
+import SliderComponent from '../containers/Slider';
 
 
 class App extends Component {

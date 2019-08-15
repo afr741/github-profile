@@ -20,7 +20,7 @@ class Profile extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({userInfo: nextProps.profile, editing: false, error :false})
-    console.log(this.state.userInfo);
+    console.log(this.state.userInfo.name);
   }
 
   updateValue(type, event) {

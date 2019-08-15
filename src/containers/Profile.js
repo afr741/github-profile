@@ -7,8 +7,7 @@ import ProfileComponent from '../Components/Profile';
 
 const mapStateToProps = state => {
   return {
-    profile : state.profile,
-    repos : state.repos
+    profile : state.profile
   };
 }
 

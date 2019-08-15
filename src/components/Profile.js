@@ -6,7 +6,7 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userInfo : {},
+      userInfo : this.props.profile,
       editing : false,
       error : false
 
@@ -14,13 +14,16 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-  this.props.fetchProfile();
+    if(typeof this.props.profile.name =='undefined'){
+        this.props.fetchProfile();
+    }
+
 
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({userInfo: nextProps.profile, editing: false, error :false})
-    console.log(this.state.userInfo.name);
+
   }
 
   updateValue(type, event) {
@@ -28,6 +31,23 @@ class Profile extends Component {
     var userInfoCopy = JSON.parse(JSON.stringify(this.state.userInfo));
     userInfoCopy[type] = event.target.value;
     this.setState({userInfo:userInfoCopy});
+  }
+
+  saveProfile(){
+    var error  = false;
+    var propertiesToCheck =['name', 'bio','location', 'company.'];
+    propertiesToCheck.forEach(function(term) {
+      if(this.state.userInfo[term]==='') {
+        error = true;
+        console.log('fuck you did not WORK!');
+      }
+    }.bind(this));
+    if(!error){
+      this.props.saveProfile(this.state.userInfo);
+      console.log('Fuck you worked!');
+
+    }
+    this.setState({error});
   }
 
 
@@ -45,6 +65,7 @@ class Profile extends Component {
         <Form.Label>Name </Form.Label>
         <Form.Control
          type="text"
+         className={this.state.error&&this.state.userInfo.name ==='' ? 'red-border' : ''}
          placeholder="Enter text here"
          value = {this.state.userInfo.name}
          onChange ={this.updateValue.bind(this, 'name')}
@@ -53,6 +74,8 @@ class Profile extends Component {
         <Form.Label>Bio </Form.Label>
         <Form.Control
          type="text"
+         className={this.state.error&&this.state.userInfo.bio ==='' ? 'red-border' : ''}
+
          placeholder="Enter text here"
          value = {this.state.userInfo.bio}
          onChange ={this.updateValue.bind(this, 'bio')}
@@ -61,6 +84,8 @@ class Profile extends Component {
         <Form.Label>Location </Form.Label>
         <Form.Control
          type="text"
+         className={this.state.error&&this.state.userInfo.location ==='' ? 'red-border' : ''}
+
          placeholder="Enter text here"
          value = {this.state.userInfo.location}
          onChange ={this.updateValue.bind(this, 'location')}
@@ -69,10 +94,13 @@ class Profile extends Component {
         <Form.Label>Company </Form.Label>
         <Form.Control
          type="text"
+         className={this.state.error&&this.state.userInfo.company ==='' ? 'red-border' : ''}
+
          placeholder="Enter text here"
          value = {this.state.userInfo.company}
          onChange ={this.updateValue.bind(this, 'company')}
          />
+         <Button bsstyle ="info" onClick ={this.saveProfile.bind(this)}>Save</Button>
       </Form.Group>
 
 

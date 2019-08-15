@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormGroup, FormLabel, FormControl, Form, Button }  from 'react-bootstrap';
+import { Form, Button }  from 'react-bootstrap';
 import actions_profile from '../actions/actions_profile';
 class Profile extends Component {
 
@@ -13,13 +13,6 @@ class Profile extends Component {
     }
   }
 
-  componentDidMount() {
-    if(typeof this.props.profile.name =='undefined'){
-        this.props.fetchProfile();
-    }
-
-
-  }
 
   componentWillReceiveProps(nextProps) {
     this.setState({userInfo: nextProps.profile, editing: false, error :false})
@@ -56,7 +49,9 @@ class Profile extends Component {
 
     return (
       <div className="container">
-      <Button bsstyle = "primary" onClick={()=> this.setState({editing: !this.state.editing})}>Edit</Button>
+      <Button bsstyle = "primary" onClick={()=> this.setState({editing: !this.state.editing})}>
+      {this.state.editing ? "Cancel Edit" : "Edit"}
+      </Button>
       <hr/>
       {this.state.editing      ?
 

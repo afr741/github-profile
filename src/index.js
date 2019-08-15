@@ -6,7 +6,7 @@ import thunk from 'redux-thunk'
 import  rootReducer from './reducers'
 
 import './index.css';
-import App from './Components/App';
+import App from './containers/App';
 //import * as serviceWorker from './serviceWorker';
 
 let store = createStore(

@@ -28,7 +28,7 @@ class SliderComponent extends Component {
           <h3>{this.props.profile.name}</h3>
         </div>
         <div>
-          <img src = {this.props.profile.avatar_url}/>
+          <img src = {this.props.profile.avatar_url} alt = {this.props.profile.name}/>
         </div>
         <div>
           <h3>{this.props.profile.bio}</h3>

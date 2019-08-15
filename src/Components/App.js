@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 
 
-import {Nav, Navbar,NavItem, NavDropdown, MenuItem, Table} from 'react-bootstrap'
-import Select from 'react-select';
+import {Nav, Navbar} from 'react-bootstrap'
 import Profile from '../containers/Profile';
 import SliderComponent from '../containers/Slider';
 
@@ -11,9 +10,14 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTab: 'profile'
+      currentTab: 'slider'
     }
   }
+
+  componentDidMount() {
+
+        this.props.fetchProfile();
+    }
 
 
       render() {
@@ -23,7 +27,7 @@ class App extends Component {
 
           <div className="App">
           <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Navbar.Brand href="#home">My Github-Profile</Navbar.Brand>
+            <Navbar.Brand href="#home" onClick={()=>this.setState({currentTab:'Slider'})}>My Github-Profile</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="mr-auto">

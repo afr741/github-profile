@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 
 import {Nav, Navbar,NavItem, NavDropdown, MenuItem, Table} from 'react-bootstrap'
 import Select from 'react-select';
-import Profile from '../Components/Profile';
+import Profile from '../containers/Profile';
 import SliderComponent from '../Components/Slider';
 
 

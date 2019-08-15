@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FormGroup, FormLabel, FormControl, Form, Button }  from 'react-bootstrap';
-import actions_repos from '../actions/actions_repos';
+import actions_profile from '../actions/actions_profile';
 class Profile extends Component {
 
   constructor(props) {
@@ -14,62 +14,76 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    //this.props.fetchRepos();
-    let header = new Headers({"Content-Type":"application/json", "Authorization":"token 8e47fca3776965122381ee6058c83d398aad8e14"});
-    return fetch('https://api.github.com/users  /afr741', {
-      method: 'GET',
-      headers: header
-    })
-    .then(response => response.json())
-    .then(json => {
-      //dispatch(loadRepos(json))
-      console.log(json)
-    })
-    .catch(error => console.log(error))
+  this.props.fetchProfile();
+
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({userInfo: nextProps.profile, editing: false, error :false})
+    console.log(this.state.userInfo);
   }
 
   updateValue(type, event) {
+
     var userInfoCopy = JSON.parse(JSON.stringify(this.state.userInfo));
     userInfoCopy[type] = event.target.value;
     this.setState({userInfo:userInfoCopy});
   }
 
-  saveProfile() {
-    var error = false;
-    var propertiesToCheck = ['name','bio','location','company'];
-    propertiesToCheck.forEach(function(term) {
-      if(this.state.userInfo[term]==='') {
-        error = true;
-      }
-    }.bind(this));
-    if(!error) {
-      this.props.saveProfile(this.state.userInfo);
-    }
-    this.setState({error});
-  }
+
 
   render() {
 
     return (
       <div className="container">
-      <Button bsStyle = "primary" onClick={()=> this.setState({editing: !this.state.editing})}>Edit</Button>
+      <Button bsstyle = "primary" onClick={()=> this.setState({editing: !this.state.editing})}>Edit</Button>
+      <hr/>
+      {this.state.editing      ?
 
-      {this.state.editing ?
 
       <Form.Group controlId="exampleForm.ControlInput1">
         <Form.Label>Name </Form.Label>
-        <Form.Control type="text" placeholder="Anushervon Rakhmatov" value = {this.state.userInfo.name} onChange ={this.updateValue.bind(this)}/>
+        <Form.Control
+         type="text"
+         placeholder="Enter text here"
+         value = {this.state.userInfo.name}
+         onChange ={this.updateValue.bind(this, 'name')}
+         />
+
+        <Form.Label>Bio </Form.Label>
+        <Form.Control
+         type="text"
+         placeholder="Enter text here"
+         value = {this.state.userInfo.bio}
+         onChange ={this.updateValue.bind(this, 'bio')}
+         />
+
+        <Form.Label>Location </Form.Label>
+        <Form.Control
+         type="text"
+         placeholder="Enter text here"
+         value = {this.state.userInfo.location}
+         onChange ={this.updateValue.bind(this, 'location')}
+         />
+
+        <Form.Label>Company </Form.Label>
+        <Form.Control
+         type="text"
+         placeholder="Enter text here"
+         value = {this.state.userInfo.company}
+         onChange ={this.updateValue.bind(this, 'company')}
+         />
       </Form.Group>
 
 
         :
 
           <div>
-            <p><strong>Name</strong> {this.state.userInfo.name}</p>
+            <p><strong>Name:</strong> {this.state.userInfo.name}</p>
+            <p><strong>Bio:</strong> {this.state.userInfo.bio}</p>
+            <p><strong>Location:</strong> {this.state.userInfo.location}</p>
+            <p><strong>Company:</strong> {this.state.userInfo.company}</p>
+
           </div>
       }
 

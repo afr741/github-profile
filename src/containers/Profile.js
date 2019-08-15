@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import { fetchProfile, saveProfile } from '../actions/actions_profile';
-import {fetchProfile, saveProfile} from '../Components/Profile';
-import { fetchRepos } from '../actions/actions_repos';
+import { fetchProfile } from '../actions/actions_profile';
+import {saveProfile} from '../actions/actions_profile';
+
 
 import ProfileComponent from '../Components/Profile';
 
@@ -14,8 +14,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchRepos : () => {
-      dispatch(fetchRepos());
+    fetchProfile : () => {
+      dispatch(fetchProfile());
     },
     saveProfile : (profile) => {
       dispatch(saveProfile(profile));

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button }  from 'react-bootstrap';
-import actions_profile from '../actions/actions_profile';
+
 class Profile extends Component {
 
   constructor(props) {
@@ -32,17 +32,15 @@ class Profile extends Component {
     propertiesToCheck.forEach(function(term) {
       if(this.state.userInfo[term]==='') {
         error = true;
-        console.log('fuck you did not WORK!');
+        console.log('fuck you, it did not WORK!');
       }
     }.bind(this));
     if(!error){
       this.props.saveProfile(this.state.userInfo);
-      console.log('Fuck you worked!');
-
+      console.log('Fuck you, it worked!');
     }
     this.setState({error});
   }
-
 
 
   render() {
@@ -109,6 +107,7 @@ class Profile extends Component {
 
           </div>
       }
+
 
 
       </div>

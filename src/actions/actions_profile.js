@@ -11,7 +11,6 @@ export function fetchProfile() {
     })
     .then(response => response.json())
     .then(json => {
-
       dispatch(loadProfile(json))
     })
     .catch(error => console.log(error));

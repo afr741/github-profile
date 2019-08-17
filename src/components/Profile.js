@@ -13,6 +13,9 @@ class Profile extends Component {
     }
   }
 
+componentDidMount(){
+  this.props.fetchProfile();
+}
 
   componentWillReceiveProps(nextProps) {
     this.setState({userInfo: nextProps.profile, editing: false, error :false})

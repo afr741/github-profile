@@ -4,7 +4,7 @@ export const PROFILE_EDITED = 'PROFILE_EDITED';
 export function fetchProfile() {
   return (dispatch) => {
 
-    let header = new Headers({"Content-Type":"application/json", "Authorization":"token 25a61f85902f3b9796945e768f70b39d62944bea"});
+    let header = new Headers({"Content-Type":"application/json", "Authorization":"token 1cac6f708b7efe83e2f63daaf719173f49b0689b"});
     return fetch('https://api.github.com/users/afr741', {
       method: 'GET',
       headers: header
@@ -20,7 +20,7 @@ export function fetchProfile() {
 export function saveProfile(profile) {
   return (dispatch) => {
 
-    let header = new Headers({"Content-Type":"application/json", "Authorization":"token 25a61f85902f3b9796945e768f70b39d62944bea"});
+    let header = new Headers({"Content-Type":"application/json", "Authorization":"token 1cac6f708b7efe83e2f63daaf719173f49b0689b"});
     return fetch('https://api.github.com/user', {
       method: 'PATCH',
       headers: header,

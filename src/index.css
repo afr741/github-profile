@@ -12,6 +12,11 @@ body {
 .slick-slide img{
   margin: auto;
 }
+.slick-slide h3{
+  margin-top: 10rem;
+  font-size: 45px;
+
+}
 input {
   margin-bottom: 10px;
 }

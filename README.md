@@ -1,3 +1,11 @@
+## Description of the projec
+This app is a Github Profile written in ReactJS and refactored to utilize Redux.
+-using github api to fetch and update the information from The Github.
+-User has an ability to change the Input display by switching between edit and display.
+-Ability to update the profile section of your actual Github page profile.
+-Scrolling slider of information
+
+
 
 ## Available Scripts
 
